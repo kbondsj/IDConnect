@@ -1,0 +1,56 @@
+<div class="form container p-3">
+    <div class="row justify-content-center">
+        <div class="col-10">
+            <h2>ID 50 Registration</h2>
+            <p>To regsitry for the ID50 reunion, complete and submit the form below</p>
+        
+            <div class="row separator"></div>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-10">
+                <form [formGroup]="registrationForm" (ngSubmit)="submitRegistration()">
+                    <div class="mb-3">
+                        <label for="fName" class="form-label">First Name</label>
+                        <input type="text" class="form-control" id="fName" formControlName="firstName"/>
+                    </div>
+                    <div class="mb-3">
+                        <label for="lastName" class="form-label">Last Name</label>
+                        <input type="text" class="form-control" id="lastName" formControlName="lastName"/>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email address</label>
+                        <input type="email" class="form-control" id="email" formControlName="email"/>
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Phone</label>
+                        <input type="number" class="form-control" id="phone" formControlName="phone"/>
+                    </div>
+                    <div class="mb-3">
+                        <label for="hasMore" class="form-label">Are you registering family members?</label>
+                        <label>Yes</label>
+                        <input type="radio" class="" id="hasMore" name="familyMembers" formControlName="familyMembers" value="Yes"/>
+                        <label>No</label>
+                        <input type="radio" class="" id="hasMore" name="familyMembers" formControlName="familyMembers" value="No"/>
+                    </div>
+
+                    <div class="registration-options row">
+                        <div class="col"> 
+                            <div class="option">Type 1</div>
+                        </div>
+                        <div class="col"> 
+                            <div class="option">Type 1</div>
+                        </div>
+                        <div class="col"> 
+                            <div class="option">Type 1</div>
+                        </div>                      
+                    </div>
+
+
+                    <!-- Submit button -->
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+                <p>Form Status: {{ registrationForm.status }}</p>
+        </div>
+    </div>
+</div>
