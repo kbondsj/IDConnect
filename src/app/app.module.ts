@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { AnnouncementsComponent } from './announcements/announcements.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     RegistrationComponent,
     EventsComponent,
     HomeComponent,
-    AnnouncementsComponent
+    AnnouncementsComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
