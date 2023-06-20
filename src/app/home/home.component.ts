@@ -11,7 +11,7 @@ export class HomeComponent {
 
   constructor(){
     setTimeout(()=>{
-      //this.showTeaser();  
+      //this.showTeaser();
     }, 2000)
   }
 

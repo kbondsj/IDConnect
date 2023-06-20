@@ -1,15 +1,15 @@
-<div class="form container p-3">
+<div class="form container p-3 my-3">
     <div class="row justify-content-center">
         <div class="col-10">
             <h2 class="mt-4">ID 50 Registration</h2>
             <p>To regsitry for the ID50 reunion, complete and submit the form below</p>
-        
+
             <div class="row separator"></div>
         </div>
     </div>
     <div class="row justify-content-center">
         <div class="col-10">
-                <form [formGroup]="registrationForm" (ngSubmit)="submitRegistration()">
+          <form [formGroup]="registrationForm" (ngSubmit)="submitRegistration()">
                     <div class="row">
                         <div class="mb-3 col">
                             <label for="fName" class="form-label">First Name</label>
@@ -31,6 +31,7 @@
                         </div>
                     </div>
 
+
                     <div class="row">
                         <div class="mb-3 col-12">
                             <label for="street" class="form-label">Street</label>
@@ -46,49 +47,59 @@
                         </div>
                         <div class="mb-3 col" >
                             <label for="zip" class="form-label">Zip</label>
-                            <input type="number" class="form-control" id="phone" formControlName="zip"/>
+                            <input type="number" class="form-control" id="phone" formControlName="zipCode"/>
                         </div>
                     </div>
 
-                    <h4 class="mt-4">Line Details</h4>
+                    <h4 class="mt-5">Line Details</h4>
+
                     <div class="row separator"></div>
-                    <div class="mb-3">
-                        <select>
-                            <option>Spring</option>
-                            <option>Summer</option>
-                            <option>Fall</option>
-                        </select>
-                        <label for="phone" class="form-label">Line</label>
-                        <select *ngFor="let year of [1974..2023]">
-                            <option>{{year}}</option>
-                        </select>
+                    <div class="row mb-3">
+                        <h6>Please indicate your intake details</h6>
+                        <div class="col">
+                          <select class="form-select" aria-label="When did you cross">
+                              <option>Spring</option>
+                              <option>Summer</option>
+                              <option>Fall</option>
+                          </select>
+                        </div>
+                        <div class="col">
+                          <select class="form-select">
+                              <option>2006</option>
+                              <option *ngFor="let year of chapterYears" value="1">{{year}}</option>
+                          </select>
+                        </div>
+
                     </div>
                     <div class="mb-3">
-                        <label for="hasMore" class="form-label">Are you registering family members?</label>
-                        <label>Yes</label>
-                        <input type="radio" class="" id="hasMore" name="familyMembers" formControlName="familyMembers" value="Yes"/>
-                        <label>No</label>
-                        <input type="radio" class="" id="hasMore" name="familyMembers" formControlName="familyMembers" value="No"/>
+                        <p for="hasMore" class="form-label">Are you registering family members?</p>
+                        <input type="radio" class="mx-1" id="hasMoreYes" name="familyMembers" formControlName="familyMembers" value="Yes"/>
+                        <label for="hasMoreYes">Yes</label>
+                        <input type="radio" class="mx-1" id="hasMoreNo" name="familyMembers" formControlName="familyMembers" value="No"/>
+                        <label for="hasMoreNo">No</label>
+                        <br />
+                        <button class="btn btn-warning mt-3">Add</button>
                     </div>
 
-                    <h4 class="mt-4">Registration</h4>
+                    <h4 class="mt-5">Registration</h4>
                     <div class="row separator"></div>
                     <p>We are pleased to offer various levels of registration.  Please review and select a package to register.</p>
                     <div class="registration-options row">
-                        <div class="col"> 
-                            <div class="option">Type 1</div>
+                        <div class="col">
+                            <div class="first option" (click)="updatePackage(1)">Package 1</div>
                         </div>
-                        <div class="col"> 
-                            <div class="option">Type 1</div>
+                        <div class="col">
+                            <div class="second option" (click)="updatePackage(2)">Package 2</div>
                         </div>
-                        <div class="col"> 
-                            <div class="option">Type 1</div>
-                        </div>                      
+                        <div class="col">
+                            <div class="third option" (click)="updatePackage(3)">Package 3</div>
+                        </div>
                     </div>
+                    <input type="hidden" formControlName="package"/>
 
 
                     <!-- Submit button -->
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary my-4">Submit</button>
                 </form>
                 <p>Form Status: {{ registrationForm.status }}</p>
         </div>

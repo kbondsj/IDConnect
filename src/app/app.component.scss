@@ -4,6 +4,7 @@
             background-color: rgb(54, 57, 61);
             box-shadow: 0px -3px 6px -2px inset #0a0f01;
             height: 450px;
+            background-image: url('/assets/sphinx.jpeg');
         }
         .nav{
             min-height: 60px;
@@ -20,6 +21,11 @@
                     cursor: pointer;
                 }
             }
+        }
+
+        .header{
+          color: white;
+          height: calc(100% - 60px)
         }
     }
 }
