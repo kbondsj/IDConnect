@@ -1,7 +1,7 @@
 <div class="form container p-3">
     <div class="row justify-content-center">
         <div class="col-10">
-            <h2>ID 50 Registration</h2>
+            <h2 class="mt-4">ID 50 Registration</h2>
             <p>To regsitry for the ID50 reunion, complete and submit the form below</p>
         
             <div class="row separator"></div>
@@ -10,21 +10,58 @@
     <div class="row justify-content-center">
         <div class="col-10">
                 <form [formGroup]="registrationForm" (ngSubmit)="submitRegistration()">
-                    <div class="mb-3">
-                        <label for="fName" class="form-label">First Name</label>
-                        <input type="text" class="form-control" id="fName" formControlName="firstName"/>
+                    <div class="row">
+                        <div class="mb-3 col">
+                            <label for="fName" class="form-label">First Name</label>
+                            <input type="text" class="form-control" id="fName" formControlName="firstName"/>
+                        </div>
+                        <div class="mb-3 col">
+                            <label for="lastName" class="form-label">Last Name</label>
+                            <input type="text" class="form-control" id="lastName" formControlName="lastName"/>
+                        </div>
                     </div>
-                    <div class="mb-3">
-                        <label for="lastName" class="form-label">Last Name</label>
-                        <input type="text" class="form-control" id="lastName" formControlName="lastName"/>
+                    <div class="row">
+                        <div class="mb-3 col">
+                            <label for="email" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="email" formControlName="email"/>
+                        </div>
+                        <div class="mb-3 col" >
+                            <label for="phone" class="form-label">Phone</label>
+                            <input type="number" class="form-control" id="phone" formControlName="phone"/>
+                        </div>
                     </div>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email address</label>
-                        <input type="email" class="form-control" id="email" formControlName="email"/>
+
+                    <div class="row">
+                        <div class="mb-3 col-12">
+                            <label for="street" class="form-label">Street</label>
+                            <input type="text" class="form-control" id="street" formControlName="street"/>
+                        </div>
+                        <div class="mb-3 col" >
+                            <label for="City" class="form-label">City</label>
+                            <input type="text" class="form-control" id="city" formControlName="city"/>
+                        </div>
+                        <div class="mb-3 col" >
+                            <label for="state" class="form-label">State</label>
+                            <input type="text" class="form-control" id="state" formControlName="state"/>
+                        </div>
+                        <div class="mb-3 col" >
+                            <label for="zip" class="form-label">Zip</label>
+                            <input type="number" class="form-control" id="phone" formControlName="zip"/>
+                        </div>
                     </div>
+
+                    <h4 class="mt-4">Line Details</h4>
+                    <div class="row separator"></div>
                     <div class="mb-3">
-                        <label for="phone" class="form-label">Phone</label>
-                        <input type="number" class="form-control" id="phone" formControlName="phone"/>
+                        <select>
+                            <option>Spring</option>
+                            <option>Summer</option>
+                            <option>Fall</option>
+                        </select>
+                        <label for="phone" class="form-label">Line</label>
+                        <select *ngFor="let year of [1974..2023]">
+                            <option>{{year}}</option>
+                        </select>
                     </div>
                     <div class="mb-3">
                         <label for="hasMore" class="form-label">Are you registering family members?</label>
@@ -34,6 +71,9 @@
                         <input type="radio" class="" id="hasMore" name="familyMembers" formControlName="familyMembers" value="No"/>
                     </div>
 
+                    <h4 class="mt-4">Registration</h4>
+                    <div class="row separator"></div>
+                    <p>We are pleased to offer various levels of registration.  Please review and select a package to register.</p>
                     <div class="registration-options row">
                         <div class="col"> 
                             <div class="option">Type 1</div>

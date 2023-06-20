@@ -1,0 +1,30 @@
+#home-cmp{
+    background-color: white;    
+}
+
+#id-video{
+    display: none;
+    position: absolute;
+    top: calc(50vh - (315px/2));
+    left: 35%;
+
+    &.hide{
+        display: none;
+    }
+}
+#backdrop{    
+    position: absolute;    
+    transition: all .2s linear;
+
+    &.active{        
+        background: rgba(0,0,0,.75);
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;    
+    }
+
+    &.hide{
+        display: none;
+    }
+}
