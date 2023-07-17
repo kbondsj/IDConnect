@@ -10,7 +10,7 @@ import { Component } from '@angular/core';
 export class AdminComponent {
 
   loginSuccessful: boolean = false;
-
+  registrations: any = [];
   adminForm: FormGroup = new FormGroup({
     username: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required)
@@ -28,7 +28,9 @@ export class AdminComponent {
 
   getPageData = ()=> {
     this.http.get('https://yrf3lzqc4l.execute-api.us-east-1.amazonaws.com/default/get-registrations')
-    .subscribe( response => console.log(response));
+    .subscribe( response => {
+      this.registrations = response
+    });
   }
 
 }

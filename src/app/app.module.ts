@@ -11,6 +11,8 @@ import { AnnouncementsComponent } from './announcements/announcements.component'
 import { ReactiveFormsModule } from '@angular/forms';
 import { AdminComponent } from './admin/admin.component';
 import { CommonModule } from '@angular/common';
+import { StripeModule } from "stripe-angular";
+import { PaymentCaptureComponent } from './payment-capture/payment-capture.component'
 
 @NgModule({
   declarations: [
@@ -19,14 +21,16 @@ import { CommonModule } from '@angular/common';
     EventsComponent,
     HomeComponent,
     AnnouncementsComponent,
-    AdminComponent
+    AdminComponent,
+    PaymentCaptureComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    CommonModule
+    CommonModule,
+    StripeModule.forRoot("pk_test_51NNmHkHQAOmDZaHdfpKhCsKg23qLVCAeRJ7WZMmcztzDv4WjgmUEW5o6KFvfcWGZ5aeSMlC4ceMXKhuZOCGCbuDa00i1hEMHVj")
   ],
   providers: [],
   bootstrap: [AppComponent]

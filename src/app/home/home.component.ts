@@ -11,7 +11,7 @@ export class HomeComponent {
 
   constructor(){
     setTimeout(()=>{
-      //this.showTeaser();
+      this.showTeaser();
     }, 2000)
   }
 
@@ -21,6 +21,13 @@ export class HomeComponent {
     vidModal.style.display = "block"
 
     document.getElementById("backdrop")?.classList.add("active");
+  }
+
+  closeVModal(){
+    const vidModal = this.videoModal.nativeElement;
+    vidModal.style.display = "none"
+
+    document.getElementById("backdrop")?.classList.remove("active");
   }
 
 }

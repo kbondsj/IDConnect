@@ -27,6 +27,9 @@
     </div>
 <div id="backdrop"></div>
 <div id="id-video" #videoModal>
+    <div class="v-modal-header" style="color: #fff; font-size: 1.5em; float:right; cursor: pointer">
+      <span (click)="closeVModal()">X</span>
+    </div>
     <div class="video-container">
         <iframe width="560" height="315" src="https://www.youtube.com/embed/itnqEauWQZM?start=7" title="YouTube video player" frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen autoplay>

@@ -78,7 +78,25 @@
                         <input type="radio" class="mx-1" id="hasMoreNo" name="familyMembers" formControlName="familyMembers" value="No"/>
                         <label for="hasMoreNo">No</label>
                         <br />
-                        <button class="btn btn-warning mt-3">Add</button>
+                        <div class="family-table">
+                          <button class="btn btn-warning mt-3" (click)="showAddFamilyModal()">Add</button>
+                          <table class="table">
+                              <thead>
+                                <tr>
+                                  <th>Name</th>
+                                  <th>Age</th>
+                                  <th>Type</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr *ngFor="let member of familyMembers">
+                                  <td>{{member.name}}</td>
+                                  <td>{{member.age}}</td>
+                                  <td>{{member.type}}</td>
+                                </tr>
+                              </tbody>
+                          </table>
+                        </div>
                     </div>
 
                     <h4 class="mt-5">Registration</h4>
