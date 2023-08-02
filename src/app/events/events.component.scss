@@ -7,7 +7,50 @@
     text-align: center;
   }
 
+  .events-dates > div{
+
+    display: flex;
+    justify-content: center;
+
+    .date {
+      min-width: 200px;
+      min-height: 120px;
+      background-color: white;
+      border: 1px solid #ddd;
+      margin: 0 10px;
+      transition: scale .2s ease-in-out;
+
+      &:hover{
+        cursor: pointer;
+        scale: 1.1;
+      }
+
+    }
+  }
+
   .events > div.col-9{
     margin-bottom: 20px;
+    .card{
+      border-left: 3px solid gold;
+
+      .card-text{
+        padding-top: 3px;
+        margin-left: 10px;
+      }
+      .circle {
+        background-color: #ddd;
+        height: 70px;
+        width: 70px;
+        border-radius: 50%;
+      }
+
+      .card-body-left, .card-body-right{
+        flex: 1
+      }
+
+      .card-body-center{
+        flex: 3
+      }
+    }
   }
 }

@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class EventsComponent {
 
+  showDay(day:number){
+
+    // read the day of events json and build the list
+    alert(day);
+  }
 }
