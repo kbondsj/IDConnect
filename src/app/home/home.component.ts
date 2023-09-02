@@ -17,10 +17,10 @@ export class HomeComponent {
 
   showTeaser(){
     //$("#id-video").css("display", "block");
-    const vidModal = this.videoModal.nativeElement;
-    vidModal.style.display = "block"
+    //const vidModal = this.videoModal.nativeElement;
+    //vidModal.style.display = "block"
 
-    document.getElementById("backdrop")?.classList.add("active");
+    //document.getElementById("backdrop")?.classList.add("active");
   }
 
   closeVModal(){
