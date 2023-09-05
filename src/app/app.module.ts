@@ -11,8 +11,9 @@ import { AnnouncementsComponent } from './announcements/announcements.component'
 import { ReactiveFormsModule } from '@angular/forms';
 import { AdminComponent } from './admin/admin.component';
 import { CommonModule } from '@angular/common';
-import { StripeModule } from "stripe-angular";
-import { PaymentCaptureComponent } from './payment-capture/payment-capture.component'
+//import { StripeModule } from "stripe-angular";
+//import { PaymentCaptureComponent } from './payment-capture/payment-capture.component'
+import { NgxPayPalModule } from 'ngx-paypal';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { PaymentCaptureComponent } from './payment-capture/payment-capture.compo
     HomeComponent,
     AnnouncementsComponent,
     AdminComponent,
-    PaymentCaptureComponent
+    //PaymentCaptureComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +31,9 @@ import { PaymentCaptureComponent } from './payment-capture/payment-capture.compo
     HttpClientModule,
     ReactiveFormsModule,
     CommonModule,
-    StripeModule.forRoot("pk_test_51NNmHkHQAOmDZaHdfpKhCsKg23qLVCAeRJ7WZMmcztzDv4WjgmUEW5o6KFvfcWGZ5aeSMlC4ceMXKhuZOCGCbuDa00i1hEMHVj")
+    //StripeModule.forRoot("pk_test_51NNmHkHQAOmDZaHdfpKhCsKg23qLVCAeRJ7WZMmcztzDv4WjgmUEW5o6KFvfcWGZ5aeSMlC4ceMXKhuZOCGCbuDa00i1hEMHVj")
+    NgxPayPalModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

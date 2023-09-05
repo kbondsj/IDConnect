@@ -53,74 +53,169 @@
                         </div>
                     </div>
 
-                    <h4 class="mt-5">Line Details</h4>
 
-                    <div class="row separator"></div>
-                    <div class="row mb-3">
-                        <h6>Please indicate your intake details</h6>
-                        <div class="col">
-                          <select class="form-select" aria-label="When did you cross">
-                              <option>Spring</option>
-                              <option>Summer</option>
-                              <option>Fall</option>
-                          </select>
+                    <div class="row">
+                        <h4 class="mt-5">Registration Details</h4>
+                        <div class="row separator"></div>
+                        <div class="row">
+                            <div class="col-12 col-lg-6 mt-2">
+                                <label>Select a meal for the Gala</label>
+                                <select class="form-select">
+                                    <option value="">Select a Meal</option>
+                                    <option>Herb Roasted Chicken w/ lemon butter</option>
+                                    <option>Italian Herb Roasted Salmon</option>
+                                    <option>Grilled Bruschetta stuffed Zucchini Boats (Vegan)</option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="col">
-                          <select class="form-select">
-                              <option>2006</option>
-                              <option *ngFor="let year of chapterYears" value="1">{{year}}</option>
-                          </select>
+                        <div class="row row-cols-1">
+                            <div class="col-12 col-lg-6 my-2">
+                                <label>Please select a registration type</label>
+                                <select class="form-select" (change)="updateTypeForm($event)" formControlName="registrationType">
+                                    <option value="">Select a Registration Type</option>
+                                    <option value="id-brother">Registering as an Iota Delta Brother</option>
+                                    <option value="guest">Registering as a Guest</option>
+                                </select>
+                            </div>                            
                         </div>
-
+                        <ng-container *ngIf="isIdBrother === true">
+                            <div class="row mt-2">
+                                <h6>Please indicate your line details</h6>
+                                <div class="col-6 col-lg-3 my-1">
+                                  <select class="form-select" aria-label="When did you cross">
+                                      <option value="">Select semester</option>
+                                      <option value="spring">Spring</option>
+                                      <option value="summer">Summer</option>
+                                      <option value="fall">Fall</option>
+                                  </select>
+                                </div>
+                                <div class="col-6 col-lg-3 my-1">
+                                  <select class="form-select">
+                                      <option value="">Select year</option>
+                                      <option *ngFor="let year of chapterYears" value="{{year}}">{{year}}</option>
+                                  </select>
+                                </div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-lg-6 my-1">
+                                    <label class="form-label">What is your <strong>line name</strong>?</label>
+                                    <input class="form-control" type="text" />
+                                </div>
+                            </div>                                
+                        </ng-container>
                     </div>
-                    <div class="mb-3">
-                        <p for="hasMore" class="form-label">Are you registering family members?</p>
+
+                    <div class="my-3">
+                        <p for="hasMore" class="form-label">Are you registering family members or additional guests?</p>
+                        
                         <input type="radio" class="mx-1" id="hasMoreYes" name="familyMembers" formControlName="familyMembers" value="Yes"/>
                         <label for="hasMoreYes">Yes</label>
-                        <input type="radio" class="mx-1" id="hasMoreNo" name="familyMembers" formControlName="familyMembers" value="No"/>
+
+                        <input type="radio" class="mx-1 ms-3" id="hasMoreNo" name="familyMembers" formControlName="familyMembers" value="No"/>
                         <label for="hasMoreNo">No</label>
+                        
                         <br />
-                        <div class="family-table">
-                          <button class="btn btn-warning mt-3" (click)="showAddFamilyModal()">Add</button>
-                          <table class="table">
-                              <thead>
-                                <tr>
-                                  <th>Name</th>
-                                  <th>Age</th>
-                                  <th>Type</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                <tr *ngFor="let member of familyMembers">
-                                  <td>{{member.name}}</td>
-                                  <td>{{member.age}}</td>
-                                  <td>{{member.type}}</td>
-                                </tr>
-                              </tbody>
-                          </table>
-                        </div>
+
+                        <ng-container *ngIf="registrationForm.controls['familyMembers'].value === 'Yes'">
+                            <div class="family-table">
+                              <button class="btn btn-link mt-3" type="button" (click)="showAddFamilyModal()">+ Add Family/Guest</button>
+                              <table class="table">
+                                  <thead>
+                                    <tr>
+                                      <th>Name</th>
+                                      <th>Age</th>
+                                      <th>Type</th>
+                                      <th>Registration Fee</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr *ngFor="let member of familyMembers">
+                                      <td>{{member.name}}</td>
+                                      <td>{{member.age}}</td>
+                                      <td>{{member.type}}</td>
+                                      <td>{{member.price}}</td>
+                                    </tr>
+                                  </tbody>
+                              </table>
+                            </div>
+                        </ng-container>
                     </div>
 
                     <h4 class="mt-5">Registration</h4>
                     <div class="row separator"></div>
                     <p>We are pleased to offer various levels of registration.  Please review and select a package to register.</p>
                     <div class="registration-options row">
+
+                        <!-- Early Bird -->
                         <div class="col">
-                            <div class="first option" (click)="updatePackage(1)">Package 1</div>
+                            <div id="package-1" class="first option" (click)="updatePackage(1)">
+                                <div class="option-header">
+                                    <h3>Early Bird</h3>
+                                </div>
+                                <div class="price mt-3 fs-1">$295</div>
+                                <div class="fst-italic" style="color: #888; font-size: .75em">(plus family/guests)</div>
+                                <div class="registration-details mt-3">
+                                    <ul>
+                                        <li>Valid now through Oct 31</li>
+                                        <li>Lock in the best reunion rate</li>
+                                        <li>Complete access to all events</li>
+                                        <li>ID 50 Reunion Shirt & Duffle Bag</li>
+                                        <li>Gift package</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
+                        
+                        <!-- Regular -->
                         <div class="col">
-                            <div class="second option" (click)="updatePackage(2)">Package 2</div>
+                            <div id="package-2" class="second option" (click)="updatePackage(2)">
+                                <div class="option-header">
+                                    <h3>Regular Registration</h3>
+                                </div>
+                                <div class="price mt-3 fs-1">$395</div>
+                                <div class="fst-italic" style="color: #888; font-size: .75em">(plus family/guests)</div>
+                                <div class="registration-details mt-3">
+                                    <ul>
+                                        <li>Valid Nov 1 through Jan 31</li>
+                                        <li>Our Standard reunion rate</li>
+                                        <li>Complete access to all events</li>
+                                        <li>ID 50 Reunion Shirt & Duffle Bag</li>
+                                        <li>Gift package</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
+
+                        <!-- Late bruhs -->
                         <div class="col">
-                            <div class="third option" (click)="updatePackage(3)">Package 3</div>
+                            <div id="package-3" class="third option" (click)="updatePackage(3)">
+                                <div class="option-header">
+                                    <h3>Late Registration</h3>
+                                </div>
+                                <div class="price mt-3 fs-1">$495</div>
+                                <div class="fst-italic" style="color: #888; font-size: .75em">(plus family/guests)</div>
+                                <div class="registration-details mt-3">
+                                    <ul>
+                                        <li>Valid Feb 1 through March 2</li>
+                                        <li>Our last minute reunion rate</li>
+                                        <li>Complete access to all events</li>
+                                        <li>ID 50 Reunion Shirt & Duffle Bag</li>
+                                        <li>Gift package</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <input type="hidden" formControlName="package"/>
 
+                    <div class="row separator mt-5"></div>
+                    <h4>Registration Summary:</h4>
+                    <p>Total: ${{summary.total}}</p>
 
                     <!-- Submit button -->
                     <button type="submit" class="btn btn-primary my-4">Submit</button>
-                </form>
+                    <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+            </form>
                 <p>Form Status: {{ registrationForm.status }}</p>
         </div>
     </div>

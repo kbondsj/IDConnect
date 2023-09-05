@@ -11,19 +11,30 @@
 
 
     .registration-options{
+        .option-header{
+            background-color: #ffc439;
+            padding: 10px;
+        }
         .option{
             border: 1px solid #e3e3e3;
-            background-color: rgb(241, 241, 241);
-            padding: 5px;
             min-height: 200px;
             box-shadow: 0 2px 3px #aaa;
             border-radius: 3px;
             text-align: center;
 
+            &.selected{
+                border: 3px solid green;
+            }
+
             &:hover{
                 scale: 1.1;
                 transition: scale .1s linear;
+                cursor: pointer;
             }
+        }
+
+        ul li {
+            list-style: none;
         }
 
     }
