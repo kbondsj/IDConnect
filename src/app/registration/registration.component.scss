@@ -11,6 +11,9 @@
 
 
     .registration-options{
+        ul{
+            padding-left: 0px
+        }
         .option-header{
             background-color: #ffc439;
             padding: 10px;
@@ -23,7 +26,7 @@
             text-align: center;
 
             &.selected{
-                border: 3px solid green;
+                border: 3px solid black;
             }
 
             &:hover{
@@ -39,4 +42,20 @@
 
     }
 
+    .summary{
+        background-color: rgb(242, 242, 242);
+        padding: 20px;
+    }
+
+    #process-buttons{
+        display: flex;
+        justify-content: end;
+    }
+
+}
+
+ul li { list-style: none }
+
+.paypal-button-container div:nth-child(2){
+    display: none;
 }

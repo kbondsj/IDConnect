@@ -4,7 +4,7 @@
             background-color: rgb(54, 57, 61);
             box-shadow: 0px -3px 6px -2px inset #0a0f01;
             height: 450px;
-            background-image: url('/assets/sphinx.jpeg');
+
         }
         .nav{
             min-height: 60px;
@@ -25,7 +25,12 @@
 
         .header{
           color: white;
-          height: calc(100% - 60px)
+          height: calc(100% - 60px);
+          background-image: url('/assets/id50_logo.png');
+          background-size: contain;
+          background-repeat: no-repeat;
+          background-position: center;
+          background-color: #fff;
         }
     }
 }
@@ -35,3 +40,4 @@
     background-color:rgb(54, 57, 61);
     color: #fff;
 }
+

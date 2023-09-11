@@ -11,25 +11,25 @@
         <div class="col-10">
           <form [formGroup]="registrationForm" (ngSubmit)="submitRegistration()">
                     <div class="row">
-                        <div class="mb-3 col">
+                        <div class="mb-3 col-12 col-md-6">
                             <label for="fName" class="form-label">First Name</label>
                             <input type="text" class="form-control" id="fName" formControlName="firstName"/>
                         </div>
-                        <div class="mb-3 col">
+                        <div class="mb-3 col-12 col-md-6">
                             <label for="lastName" class="form-label">Last Name</label>
                             <input type="text" class="form-control" id="lastName" formControlName="lastName"/>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="mb-3 col">
+                        <div class="mb-3 col-12 col-md-6">
                             <label for="email" class="form-label">Email address</label>
                             <input type="email" class="form-control" id="email" formControlName="email"/>
                         </div>
-                        <div class="mb-3 col" >
+                        <div class="mb-3 col-12 col-md-6" >
                             <label for="phone" class="form-label">Phone</label>
                             <input type="number" class="form-control" id="phone" formControlName="phone"/>
-                            <input type="checkbox" checked/>
-                            <label>Opt in to text communications</label>
+                            <!-- <input type="checkbox" checked/>
+                            <label>Opt in to text communications</label> -->
                         </div>
                     </div>
 
@@ -39,15 +39,15 @@
                             <label for="street" class="form-label">Street</label>
                             <input type="text" class="form-control" id="street" formControlName="street"/>
                         </div>
-                        <div class="mb-3 col" >
+                        <div class="mb-3 col-12 col-md-4" >
                             <label for="City" class="form-label">City</label>
                             <input type="text" class="form-control" id="city" formControlName="city"/>
                         </div>
-                        <div class="mb-3 col" >
+                        <div class="mb-3 col-12 col-md-4" >
                             <label for="state" class="form-label">State</label>
                             <input type="text" class="form-control" id="state" formControlName="state"/>
                         </div>
-                        <div class="mb-3 col" >
+                        <div class="mb-3 col-12 col-md-4" >
                             <label for="zip" class="form-label">Zip</label>
                             <input type="number" class="form-control" id="phone" formControlName="zipCode"/>
                         </div>
@@ -60,11 +60,33 @@
                         <div class="row">
                             <div class="col-12 col-lg-6 mt-2">
                                 <label>Select a meal for the Gala</label>
-                                <select class="form-select">
+                                <select class="form-select" formControlName="meal">
                                     <option value="">Select a Meal</option>
-                                    <option>Herb Roasted Chicken w/ lemon butter</option>
-                                    <option>Italian Herb Roasted Salmon</option>
-                                    <option>Grilled Bruschetta stuffed Zucchini Boats (Vegan)</option>
+                                    <option value="chicken">Herb Roasted Chicken w/ lemon butter</option>
+                                    <option value="salmon">Italian Herb Roasted Salmon</option>
+                                    <option  value="vegan">Grilled Bruschetta stuffed Zucchini Boats (Vegan)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-lg-6 mt-2">
+                                <label>Will you be attending the brotherhood golf event? <br /><i>($100 entry fee - includes fees, cart, and lunch)</i></label>
+                                <select class="form-select" formControlName="golf" (change)="updatePriceAndSummary()">
+                                    <option value="Yes" selected>Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-lg-6 mt-2">
+                                <label>Please select a polo shirt size</label>
+                                <select class="form-select" formControlName="poloSize">
+                                    <option value="sm">Small</option>
+                                    <option value="m">Medium</option>
+                                    <option value="lg">Large</option>
+                                    <option value="xl">XL</option>
+                                    <option value="2xl">2XL</option>
+                                    <option value="3xl">3XL</option>
                                 </select>
                             </div>
                         </div>
@@ -82,7 +104,7 @@
                             <div class="row mt-2">
                                 <h6>Please indicate your line details</h6>
                                 <div class="col-6 col-lg-3 my-1">
-                                  <select class="form-select" aria-label="When did you cross">
+                                  <select class="form-select" aria-label="When did you cross" formControlName="semester">
                                       <option value="">Select semester</option>
                                       <option value="spring">Spring</option>
                                       <option value="summer">Summer</option>
@@ -90,7 +112,7 @@
                                   </select>
                                 </div>
                                 <div class="col-6 col-lg-3 my-1">
-                                  <select class="form-select">
+                                  <select class="form-select" formControlName="year">
                                       <option value="">Select year</option>
                                       <option *ngFor="let year of chapterYears" value="{{year}}">{{year}}</option>
                                   </select>
@@ -99,9 +121,21 @@
                             <div class="row">
                                 <div class="col-12 col-lg-6 my-1">
                                     <label class="form-label">What is your <strong>line name</strong>?</label>
-                                    <input class="form-control" type="text" />
+                                    <input class="form-control" type="text" formControlName="lineName"/>
                                 </div>
-                            </div>                                
+                            </div> 
+                            <div class="row">
+                                <div class="col-12 col-lg-6 my-1">
+                                    <label class="form-label">What is your occupation?</label>
+                                    <input class="form-control" type="text" formControlName="occupation" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-lg-6 my-1">
+                                    <label class="form-label">Provide your place of employment (for networking)</label>
+                                    <input class="form-control" type="text" formControlName="employment" />
+                                </div>
+                            </div>
                         </ng-container>
                     </div>
 
@@ -125,15 +159,21 @@
                                       <th>Name</th>
                                       <th>Age</th>
                                       <th>Type</th>
+                                      <th>Gala Meal</th>
+                                      <th>Shirt Size</th>
                                       <th>Registration Fee</th>
+                                      <th></th>
                                     </tr>
                                   </thead>
                                   <tbody>
-                                    <tr *ngFor="let member of familyMembers">
+                                    <tr *ngFor="let member of familyMembers; index as i">
                                       <td>{{member.name}}</td>
                                       <td>{{member.age}}</td>
                                       <td>{{member.type}}</td>
+                                      <td>{{member.meal}}</td>
+                                      <td>{{member.shirtSize}}</td>
                                       <td>{{member.price}}</td>
+                                      <td class="text-end"><i class="bi bi-x-circle" (click)="removeRow(i)"></i></td>
                                     </tr>
                                   </tbody>
                               </table>
@@ -145,9 +185,23 @@
                     <div class="row separator"></div>
                     <p>We are pleased to offer various levels of registration.  Please review and select a package to register.</p>
                     <div class="registration-options row">
+                        <div class="col-12 mb-4">
+                            <p><strong>For ID Brothers registration :</strong>
+                            Registration included access to all reunion events and memorabilia </p>
+
+                            <p><strong>For Spouse/guest registration:</strong>
+                            Registration includes access to all events except private invitation-only events” </p>
+
+                            <p><strong>For Childrens registration:</strong>
+                            Registration Includes access to all events except private invitation-only events and the gala (licensed child care will be provided)   </p>
+
+                            <p><strong>Guest brothers registration:</strong>
+                            Registration includes includes access to all events except private invitation-only events</p>
+
+                        </div>
 
                         <!-- Early Bird -->
-                        <div class="col">
+                        <div class="col-12 col-lg-4 my-3">
                             <div id="package-1" class="first option" (click)="updatePackage(1)">
                                 <div class="option-header">
                                     <h3>Early Bird</h3>
@@ -159,15 +213,14 @@
                                         <li>Valid now through Oct 31</li>
                                         <li>Lock in the best reunion rate</li>
                                         <li>Complete access to all events</li>
-                                        <li>ID 50 Reunion Shirt & Duffle Bag</li>
-                                        <li>Gift package</li>
+                                        <li>ID 50 Memorabilia & Gift Package</li>                                        
                                     </ul>
                                 </div>
                             </div>
                         </div>
                         
                         <!-- Regular -->
-                        <div class="col">
+                        <div class="col-12 col-lg-4 my-3">
                             <div id="package-2" class="second option" (click)="updatePackage(2)">
                                 <div class="option-header">
                                     <h3>Regular Registration</h3>
@@ -179,15 +232,14 @@
                                         <li>Valid Nov 1 through Jan 31</li>
                                         <li>Our Standard reunion rate</li>
                                         <li>Complete access to all events</li>
-                                        <li>ID 50 Reunion Shirt & Duffle Bag</li>
-                                        <li>Gift package</li>
+                                        <li>ID 50 Memorabilia & Gift Package</li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Late bruhs -->
-                        <div class="col">
+                        <div class="col-12 col-lg-4 my-3">
                             <div id="package-3" class="third option" (click)="updatePackage(3)">
                                 <div class="option-header">
                                     <h3>Late Registration</h3>
@@ -196,11 +248,10 @@
                                 <div class="fst-italic" style="color: #888; font-size: .75em">(plus family/guests)</div>
                                 <div class="registration-details mt-3">
                                     <ul>
-                                        <li>Valid Feb 1 through March 2</li>
+                                        <li>Valid Feb 1 through April 2</li>
                                         <li>Our last minute reunion rate</li>
                                         <li>Complete access to all events</li>
-                                        <li>ID 50 Reunion Shirt & Duffle Bag</li>
-                                        <li>Gift package</li>
+                                        <li>ID 50 Memorabilia & Gift Package</li>                                        
                                     </ul>
                                 </div>
                             </div>
@@ -209,14 +260,43 @@
                     <input type="hidden" formControlName="package"/>
 
                     <div class="row separator mt-5"></div>
-                    <h4>Registration Summary:</h4>
-                    <p>Total: ${{summary.total}}</p>
 
-                    <!-- Submit button -->
-                    <button type="submit" class="btn btn-primary my-4">Submit</button>
-                    <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+                    <div class="col col-lg-9 offset-lg-3 mb-3" *ngIf="registrationForm.controls['package'].value">
+                        <div class="summary">
+                            <h4>Registration Summary:</h4>
+                            <div class="d-flex justify-content-between">
+                                <div><strong>Package:</strong> {{ PACKAGE_NAMES[registrationForm.controls["package"].value -1] }}</div>
+                                <div> ${{ PACKAGES[registrationForm.controls["package"].value] }}</div>
+                            </div>
+                            <div> <strong>Addons:</strong>
+                                <div>
+                                    <ul>
+                                        <li *ngIf="familyMembers.length > 0">
+                                            <div class="d-flex justify-content-between">
+                                                <div>Guests: {{familyMembers.length}}</div>
+                                                <div>${{summary.guests}}</div>
+                                            </div>
+                                        </li>
+                                        <li *ngIf="summary.golf > 0">
+                                            <div class="d-flex justify-content-between">
+                                                <div>Golf Event</div>
+                                                <div>$100</div>
+                                            </div>
+                                        </li>
+                                    </ul>                                
+                                </div>
+                            </div>
+                            <p class="text-end border-top">Total: ${{summary.total}}</p>
+                        </div>
+                    </div>
+
+                    <!-- Submit button no longer in use, processing after paypal 
+                    <button type="submit" class="btn btn-primary my-4">Submit</button> -->
+                    <div id="process-buttons">
+                        <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+                    </div>
             </form>
-                <p>Form Status: {{ registrationForm.status }}</p>
+            <!-- <p>Form Status: {{ registrationForm.status }}</p> -->
         </div>
     </div>
 </div>
