@@ -65,6 +65,8 @@ export class RegistrationComponent implements OnInit {
     3 : 495
   }
 
+  readonly DISCOUNT: any = 100;
+
   readonly PACKAGE_NAMES: string[] = ['Early Bird', 'Regular Registration', 'Late Registration'];
 
   familyMembers: any = [];
@@ -91,7 +93,9 @@ export class RegistrationComponent implements OnInit {
         return item;
     })
 
-    const registrationPrice = (this.PACKAGES as any)[this.registrationForm.controls['package'].value];
+    let registrationPrice = (this.PACKAGES as any)[this.registrationForm.controls['package'].value];
+    if(this.summary.discount)
+      registrationPrice -= this.summary.discount;
 
     let item: PaypalItem = {
           name: 'ID50 Reunion Registration',
@@ -120,7 +124,8 @@ export class RegistrationComponent implements OnInit {
     console.log(items);
     this.payPalConfig = {
             currency: 'USD',
-            clientId: 'ARWt-fj_RMyst0oCnsSt57mSDaNeGYHG7hfjVDUhbLpnDf-bVvioHCvDX-cbISvn4ULbzHW2aZv8GTp8',
+            // test account clientId: 'ARWt-fj_RMyst0oCnsSt57mSDaNeGYHG7hfjVDUhbLpnDf-bVvioHCvDX-cbISvn4ULbzHW2aZv8GTp8',
+            clientId: 'AWXDUD1ohylmpcgPIsZB93y5EnbR52Wt2qEhavzPqvrxOyT0mPGgBif2HFGEqTgZK7S8-oL1DaDceB8Y',
             createOrderOnClient: (data) => < ICreateOrderRequest > {
                 intent: 'CAPTURE',
                 purchase_units: [{
@@ -142,7 +147,7 @@ export class RegistrationComponent implements OnInit {
             },
             style: {
                 label: 'paypal',
-                layout: 'vertical'
+                layout: 'horizontal'
             },
             onApprove: (data, actions) => {
                 console.log('onApprove - transaction was approved, but not authorized', data, actions);
@@ -241,16 +246,19 @@ export class RegistrationComponent implements OnInit {
       package: 0,
       guests: 0,
       golf: 0,
-      total: 0
+      total: 0,
+      discount: 0
     };
 
     summary['package'] = (this.PACKAGES as any)[this.registrationForm.controls['package'].value] || 0;
     summary['guests'] = this.familyMembers.reduce( (acc: number, val: any) => { return acc + val.price}, 0);
     summary['golf'] = this.registrationForm.controls['golf'].value === "Yes" ? 100 : 0;
-    summary['total'] = summary['package'] + summary['guests'] + summary["golf"];
-
+    summary['discount'] = this.registrationForm.controls['year'].value < 2019 ? 0 : this.DISCOUNT;
+    summary['total'] = summary['package'] + summary['guests'] + summary["golf"] - summary["discount"];
     this.summary = summary;
     
+    if(this.registrationForm.controls['package'].value)
+      this.initConfig();
     
   }
 

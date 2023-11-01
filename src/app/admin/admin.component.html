@@ -24,36 +24,48 @@
 <ng-template #elseBlock >
   <div class="container">
     <div class="row">
-      <h2>Admin Dashboard</h2>
-      <p>List of things for admin dashboard</p>
-      <ul>
-        <li>Metrics by line date</li>
-        <li>Metrics by time period</li>
-        <li>Metrics by package type</li>
-        <li>Total Registrations</li>
-        <li>Attendance by type (#bruhs vs wives vs kids)</li>
-        <li>Mass messaging by email/text</li>
-        <li>Complete list of registrations</li>
-      </ul>
+        <div class="col-12 py-5">
+          <h2>Admin Dashboard</h2>
+          <p>List of things for admin dashboard</p>
+          <ul>
+            <li>Metrics by line date</li>
+            <li>Metrics by time period</li>
+            <li>Metrics by package type</li>
+            <li>Total Registrations</li>
+            <li>Attendance by type (#bruhs vs wives vs kids)</li>
+            <li>Mass messaging by email/text</li>
+            <li>Complete list of registrations</li>
+          </ul>
 
-      <ul>Todo
-        <li>Capture line numbers</li>
-        <li>Build add spouse/child modal</li>
-      </ul>
+          <ul>Todo
+            <li>Capture line numbers</li>
+            <li>Build add spouse/child modal</li>
+          </ul>
 
-      <h4>Registrations</h4>
-      <table class="table">
-        <thead>
-          <th>Name</th>
-          <th>Email</th>
-        </thead>
-        <tbody>
-          <tr *ngFor="let r of registrations">
-            <td>{{r.fName}} {{r.lName}}</td>
-            <td>{{r.email}}</td>
-          </tr>
-        </tbody>
-      </table>
+          <h4 class="mt-5">Registrations</h4>
+          <table class="table">
+            <thead>
+              <th>Name</th>
+              <th>Phone</th>
+              <th>Email</th>
+              <th>Golf</th>
+              <th>Meal</th>
+              <th>Shirt</th>
+              <th>Registration Date</th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let r of registrations">
+                <td>{{r.firstName}} {{r.lastName}}</td>
+                <td>{{r.phone}}</td>
+                <td>{{r.email}}</td>
+                <td>{{r.golf}}</td>
+                <td>{{r.meal}}</td>
+                <td>{{r.poloSize}}</td>
+                <td>{{r.registration_date | date: 'MM-dd-yyyy'}}</td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
     </div>
   </div>
 </ng-template>

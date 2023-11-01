@@ -112,7 +112,7 @@
                                   </select>
                                 </div>
                                 <div class="col-6 col-lg-3 my-1">
-                                  <select class="form-select" formControlName="year">
+                                  <select class="form-select" formControlName="year" (change)="updatePriceAndSummary()">
                                       <option value="">Select year</option>
                                       <option *ngFor="let year of chapterYears" value="{{year}}">{{year}}</option>
                                   </select>
@@ -120,7 +120,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-12 col-lg-6 my-1">
-                                    <label class="form-label">What is your <strong>line name</strong>?</label>
+                                    <label class="form-label">What is your given <strong>line name</strong>?</label>
                                     <input class="form-control" type="text" formControlName="lineName"/>
                                 </div>
                             </div> 
@@ -286,7 +286,18 @@
                                     </ul>                                
                                 </div>
                             </div>
-                            <p class="text-end border-top">Total: ${{summary.total}}</p>
+                            <div *ngIf="summary.discount > 0"><strong>Discount:</strong>
+                                <ul>
+                                    <li>
+                                        <div class="d-flex justify-content-between">
+                                                <div>Recent Grad Discount:</div>
+                                                <div>${{summary.discount}}</div>
+                                            </div>
+                                    </li>
+                                </ul>
+
+                            </div>
+                            <p class="text-end border-top pt-2">Total: ${{summary.total}}</p>
                         </div>
                     </div>
 

@@ -1,15 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.scss']
 })
-export class AdminComponent {
+export class AdminComponent implements OnInit {
 
-  loginSuccessful: boolean = false;
+  loginSuccessful: boolean = true;
   registrations: any = [];
   adminForm: FormGroup = new FormGroup({
     username: new FormControl('', Validators.required),
@@ -20,8 +20,11 @@ export class AdminComponent {
 
   }
 
+  ngOnInit(){
+    this.getPageData();
+  }
+
   adminLogin = (event: any) => {
-    console.log("login");
     this.loginSuccessful = true;
     this.getPageData();
   }
@@ -29,7 +32,21 @@ export class AdminComponent {
   getPageData = ()=> {
     this.http.get('https://yrf3lzqc4l.execute-api.us-east-1.amazonaws.com/default/get-registrations')
     .subscribe( response => {
-      this.registrations = response
+      console.log(response);
+      this.registrations = this.sortRegistrations(response);
+    });
+  }
+
+  sortRegistrations(registrations: any){
+    console.log(registrations[0]);
+    return registrations.sort( ( first:any, second:any ) => {
+      if(first.registration_date < second.registration_date){
+        return 1;
+      }else if (first.registration_date > second.registration_date){
+        return -1;
+      }else{
+        return 0;
+      }
     });
   }
 
