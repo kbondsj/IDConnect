@@ -1,33 +1,65 @@
 <div class="form container p-3 my-3">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center ">
         <div class="col-10">
             <h2 class="mt-4">ID 50 Registration</h2>
-            <p>To regsiter for the ID50 reunion, complete and submit the form below</p>
+            <p>To regsiter for the ID50 reunion, complete and submit the form below or <a href="/#/events">view current itinerary</a></p>
+            
 
             <div class="row separator"></div>
         </div>
     </div>
-    <div class="row justify-content-center">
+    <div class="row justify-content-center d-none">
+        <div class="col-10 text-center">
+            <h4>Early Bird registation has ended.  Registration will resume shortly</h4>
+        </div>
+    </div>
+    <div class="row justify-content-center ">
         <div class="col-10">
           <form [formGroup]="registrationForm" (ngSubmit)="submitRegistration()">
                     <div class="row">
                         <div class="mb-3 col-12 col-md-6">
-                            <label for="fName" class="form-label">First Name</label>
+                            <label for="fName" class="form-label">First Name<span class="text-danger">*</span></label>
                             <input type="text" class="form-control" id="fName" formControlName="firstName"/>
+                            <div *ngIf="firstName?.invalid && (firstName?.touched || firstName?.dirty)" class="font-error">
+                                <div *ngIf="firstName?.errors?.['required']" class="text-danger">
+                                    First name is required
+                                </div>
+                            </div>
                         </div>
                         <div class="mb-3 col-12 col-md-6">
-                            <label for="lastName" class="form-label">Last Name</label>
+                            <label for="lastName" class="form-label">Last Name<span class="text-danger">*</span></label>
                             <input type="text" class="form-control" id="lastName" formControlName="lastName"/>
+                            <div *ngIf="lastName?.invalid && (lastName?.touched || lastName?.dirty)" class="font-error">
+                                <div *ngIf="lastName?.errors?.['required']" class="text-danger">
+                                    Last name is required
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="mb-3 col-12 col-md-6">
-                            <label for="email" class="form-label">Email address</label>
+                            <label for="email" class="form-label">Email address<span class="text-danger">*</span></label>
                             <input type="email" class="form-control" id="email" formControlName="email"/>
+                            <div *ngIf="email?.invalid && email?.touched" class="font-error">
+                                <div *ngIf="email?.errors?.['required']" class="text-danger">
+                                    Email is required
+                                </div>
+                                <div *ngIf="email?.errors?.['email']" class="text-danger">
+                                    Please enter a valid email (e.g. someEmail@gmail.com)
+                                </div>
+                            </div>
                         </div>
                         <div class="mb-3 col-12 col-md-6" >
-                            <label for="phone" class="form-label">Phone</label>
+                            <label for="phone" class="form-label">Phone<span class="text-danger">*</span></label>
                             <input type="number" class="form-control" id="phone" formControlName="phone"/>
+                            <div *ngIf="phone?.invalid && phone?.touched" class="font-error">
+                                <div *ngIf="phone?.errors?.['required']" class="text-danger">
+                                    Phone Number is required
+                                </div>
+                                <div *ngIf="phone?.errors?.['pattern']" class="text-danger">
+                                    Please enter a valid phone number (ex. 8887771906)
+                                </div>
+                            </div>
                             <!-- <input type="checkbox" checked/>
                             <label>Opt in to text communications</label> -->
                         </div>
@@ -36,20 +68,40 @@
 
                     <div class="row">
                         <div class="mb-3 col-12">
-                            <label for="street" class="form-label">Street</label>
+                            <label for="street" class="form-label">Street<span class="text-danger">*</span></label>
                             <input type="text" class="form-control" id="street" formControlName="street"/>
+                            <div *ngIf="street?.invalid && (street?.touched || street?.dirty)" class="font-error">
+                                <div *ngIf="street?.errors?.['required']" class="text-danger">
+                                    Street is required
+                                </div>
+                            </div>
                         </div>
                         <div class="mb-3 col-12 col-md-4" >
-                            <label for="City" class="form-label">City</label>
+                            <label for="City" class="form-label">City<span class="text-danger">*</span></label>
                             <input type="text" class="form-control" id="city" formControlName="city"/>
+                            <div *ngIf="city?.invalid && (city?.touched || city?.dirty)" class="font-error">
+                                <div *ngIf="city?.errors?.['required']" class="text-danger">
+                                    City is required
+                                </div>
+                            </div>
                         </div>
                         <div class="mb-3 col-12 col-md-4" >
-                            <label for="state" class="form-label">State</label>
+                            <label for="state" class="form-label">State<span class="text-danger">*</span></label>
                             <input type="text" class="form-control" id="state" formControlName="state"/>
+                            <div *ngIf="state?.invalid && (state?.touched || state?.dirty)" class="font-error">
+                                <div *ngIf="state?.errors?.['required']" class="text-danger">
+                                    State is required
+                                </div>
+                            </div>
                         </div>
                         <div class="mb-3 col-12 col-md-4" >
-                            <label for="zip" class="form-label">Zip</label>
-                            <input type="number" class="form-control" id="phone" formControlName="zipCode"/>
+                            <label for="zip" class="form-label">Zip Code<span class="text-danger">*</span></label>
+                            <input type="number" class="form-control" id="zip" formControlName="zipCode"/>
+                            <div *ngIf="zip?.invalid && (zip?.touched || zip?.dirty)" class="font-error">
+                                <div *ngIf="zip?.errors?.['required']" class="text-danger">
+                                    Zip code is required
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -59,7 +111,7 @@
                         <div class="row separator"></div>
                         <div class="row">
                             <div class="col-12 col-lg-6 mt-2">
-                                <label>Select a meal for the Gala</label>
+                                <label>Select a meal for the Gala<span class="text-danger">*</span></label>
                                 <select class="form-select" formControlName="meal">
                                     <option value="">Select a Meal</option>
                                     <option value="chicken">Herb Roasted Chicken w/ lemon butter</option>
@@ -70,7 +122,7 @@
                         </div>
                         <div class="row">
                             <div class="col-12 col-lg-6 mt-2">
-                                <label>Will you be attending the brotherhood golf event? <br /><i>($100 entry fee - includes fees, cart, and lunch)</i></label>
+                                <label>Will you be attending the brotherhood golf event? <br /><i>($100 entry fee - includes fees, cart, and lunch)</i><span class="text-danger">*</span></label>
                                 <select class="form-select" formControlName="golf" (change)="updatePriceAndSummary()">
                                     <option value="Yes" selected>Yes</option>
                                     <option value="No">No</option>
@@ -79,7 +131,7 @@
                         </div>
                         <div class="row">
                             <div class="col-12 col-lg-6 mt-2">
-                                <label>Please select a polo shirt size</label>
+                                <label>Please select a polo shirt size<span class="text-danger">*</span></label>
                                 <select class="form-select" formControlName="poloSize">
                                     <option value="sm">Small</option>
                                     <option value="m">Medium</option>
@@ -92,7 +144,7 @@
                         </div>
                         <div class="row row-cols-1">
                             <div class="col-12 col-lg-6 my-2">
-                                <label>Please select a registration type</label>
+                                <label>Please select a registration type<span class="text-danger">*</span></label>
                                 <select class="form-select" (change)="updateTypeForm($event)" formControlName="registrationType">
                                     <option value="">Select a Registration Type</option>
                                     <option value="id-brother">Registering as an Iota Delta Brother</option>
@@ -140,7 +192,7 @@
                     </div>
 
                     <div class="my-3">
-                        <p for="hasMore" class="form-label">Are you registering family members or additional guests?</p>
+                        <p for="hasMore" class="form-label">Are you registering family members or additional guests?<span class="text-danger">*</span></p>
                         
                         <input type="radio" class="mx-1" id="hasMoreYes" name="familyMembers" formControlName="familyMembers" value="Yes"/>
                         <label for="hasMoreYes">Yes</label>
@@ -184,7 +236,7 @@
                     <h4 class="mt-5">Registration</h4>
                     <div class="row separator"></div>
                     <p>We are pleased to offer various levels of registration.  Please review and select a package to register.</p>
-                    <div class="registration-options row">
+                    <div class="row">
                         <div class="col-12 mb-4">
                             <p><strong>For ID Brothers registration :</strong>
                             Registration included access to all reunion events and memorabilia </p>
@@ -199,9 +251,16 @@
                             Registration includes includes access to all events except private invitation-only events</p>
 
                         </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <p><strong>Select your registration package:</strong><span class="text-danger">*</span></p>
+                        </div>
 
+                    </div>
+                    <div class="row justify-content-center registration-options">
                         <!-- Early Bird -->
-                        <div class="col-12 col-lg-4 my-3">
+                        <!-- <div class="col-12 col-lg-4 my-3">
                             <div id="package-1" class="first option" (click)="updatePackage(1)">
                                 <div class="option-header">
                                     <h3>Early Bird</h3>
@@ -217,7 +276,7 @@
                                     </ul>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         
                         <!-- Regular -->
                         <div class="col-12 col-lg-4 my-3">
@@ -261,53 +320,61 @@
 
                     <div class="row separator mt-5"></div>
 
-                    <div class="col col-lg-9 offset-lg-3 mb-3" *ngIf="registrationForm.controls['package'].value">
-                        <div class="summary">
-                            <h4>Registration Summary:</h4>
-                            <div class="d-flex justify-content-between">
-                                <div><strong>Package:</strong> {{ PACKAGE_NAMES[registrationForm.controls["package"].value -1] }}</div>
-                                <div> ${{ PACKAGES[registrationForm.controls["package"].value] }}</div>
-                            </div>
-                            <div> <strong>Addons:</strong>
-                                <div>
-                                    <ul>
-                                        <li *ngIf="familyMembers.length > 0">
-                                            <div class="d-flex justify-content-between">
-                                                <div>Guests: {{familyMembers.length}}</div>
-                                                <div>${{summary.guests}}</div>
-                                            </div>
-                                        </li>
-                                        <li *ngIf="summary.golf > 0">
-                                            <div class="d-flex justify-content-between">
-                                                <div>Golf Event</div>
-                                                <div>$100</div>
-                                            </div>
-                                        </li>
-                                    </ul>                                
+                    <div class="row justify-content-center">
+                        <div class="col col-lg-6 mb-3" *ngIf="registrationForm.controls['package'].value">
+                            <div class="summary">
+                                <h4>Registration Summary:</h4>
+                                <div class="d-flex justify-content-between">
+                                    <div><strong>Package:</strong> {{ PACKAGE_NAMES[registrationForm.controls["package"].value -1] }}</div>
+                                    <div> ${{ PACKAGES[registrationForm.controls["package"].value] }}</div>
                                 </div>
-                            </div>
-                            <div *ngIf="summary.discount > 0"><strong>Discount:</strong>
-                                <ul>
-                                    <li>
-                                        <div class="d-flex justify-content-between">
-                                                <div>Recent Grad Discount:</div>
-                                                <div>${{summary.discount}}</div>
-                                            </div>
-                                    </li>
-                                </ul>
+                                <div> <strong>Addons:</strong>
+                                    <div>
+                                        <ul>
+                                            <li *ngIf="familyMembers.length > 0">
+                                                <div class="d-flex justify-content-between">
+                                                    <div>Guests: {{familyMembers.length}}</div>
+                                                    <div>${{summary.guests}}</div>
+                                                </div>
+                                            </li>
+                                            <li *ngIf="summary.golf > 0">
+                                                <div class="d-flex justify-content-between">
+                                                    <div>Golf Event</div>
+                                                    <div>$100</div>
+                                                </div>
+                                            </li>
+                                        </ul>                                
+                                    </div>
+                                </div>
+                                <div *ngIf="summary.discount > 0"><strong>Discount:</strong>
+                                    <ul>
+                                        <li>
+                                            <div class="d-flex justify-content-between">
+                                                    <div>Recent Grad Discount:</div>
+                                                    <div>(${{summary.discount}})</div>
+                                                </div>
+                                        </li>
+                                    </ul>
 
+                                </div>
+                                <p class="text-end border-top pt-2">Total: ${{summary.total}}</p>
                             </div>
-                            <p class="text-end border-top pt-2">Total: ${{summary.total}}</p>
+                            <span style="font-size: 0.7em">*By submitting this registration you agree to mobile/email communications from the reunion chairs</span>
                         </div>
                     </div>
 
-                    <!-- Submit button no longer in use, processing after paypal 
-                    <button type="submit" class="btn btn-primary my-4">Submit</button> -->
-                    <div id="process-buttons">
+                    <!-- Submit button no longer in use, processing after paypal -->
+                    <!-- <button type="submit" class="btn btn-primary my-4">Submit</button> -->
+                    
+                    <div *ngIf="registrationForm.valid; else elseBlock" id="process-buttons">
                         <ngx-paypal [config]="payPalConfig"></ngx-paypal>
                     </div>
+                    <ng-template #elseBlock>
+                        <p class="text-danger text-center">Please provide all required fields marked by <span class="text-danger">*</span> to proceed with submitting the registration.</p>
+                    </ng-template>
             </form>
-            <!-- <p>Form Status: {{ registrationForm.status }}</p> -->
+            <!-- <p>Form Value: {{ registrationForm.value | json }}</p>
+            <p>Form Status: {{ registrationForm.status }}</p> -->
         </div>
     </div>
 </div>

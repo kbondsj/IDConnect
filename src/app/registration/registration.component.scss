@@ -9,6 +9,11 @@
         margin: 10px 0px
     }
 
+    .font-error{
+        font-size: .85em;
+        color: rgb(180, 26, 6)
+    }
+
 
     .registration-options{
         ul{
@@ -49,7 +54,7 @@
 
     #process-buttons{
         display: flex;
-        justify-content: end;
+        justify-content: center;
     }
 
 }

@@ -1,5 +1,8 @@
 #events-cmp{
-
+  
+  p{
+    margin: 0;
+  }
   .inner-container{
     // background-color: white;
     border-radius: 5px;
@@ -28,7 +31,7 @@
     }
   }
 
-  .events > div.col-9{
+  .events > div.col-12, .events > div.col-lg-9{
     margin-bottom: 20px;
     .card{
       border-left: 3px solid gold;

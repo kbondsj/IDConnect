@@ -40,8 +40,8 @@ export class RegistrationComponent implements OnInit {
   registrationForm: FormGroup = new FormGroup({
     firstName: new FormControl('', Validators.required),
     lastName: new FormControl('', Validators.required),
-    email: new FormControl('', Validators.email),
-    phone: new FormControl('', Validators.required),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    phone: new FormControl('', [Validators.required, Validators.pattern(/^\d{10}$/)]),
     familyMembers: new FormControl('', Validators.required),
     street: new FormControl('', Validators.required),
     city: new FormControl('', Validators.required),
@@ -53,9 +53,9 @@ export class RegistrationComponent implements OnInit {
     year: new FormControl(''),
     meal: new FormControl('', Validators.required),
     employment: new FormControl(''),
-    golf: new FormControl('', Validators.required),
+    golf: new FormControl('Yes', Validators.required),
     poloSize: new FormControl('', Validators.required),
-    occupation: new FormControl('', Validators.required),
+    occupation: new FormControl(''),
     lineName: new FormControl('')
   });
 
@@ -180,7 +180,6 @@ export class RegistrationComponent implements OnInit {
   }
 
   submitRegistration() {
-
     for(let key in this.registrationForm.controls){
       console.log(this.registrationForm.controls[key].value);
     }
@@ -288,6 +287,14 @@ export class RegistrationComponent implements OnInit {
     }, (err) => console.log(err));
   }
 
+  get firstName() { return this.registrationForm.get('firstName') }
+  get lastName() { return this.registrationForm.get('lastName') }
+  get email() { return this.registrationForm.get('email') }
+  get phone() { return this.registrationForm.get('phone') }
+  get street() { return this.registrationForm.get('street') }
+  get city() { return this.registrationForm.get('city') }
+  get state() { return this.registrationForm.get('state') }
+  get zip() { return this.registrationForm.get('zipCode') }
 }
 
 @Component({
@@ -416,7 +423,7 @@ export class FamilyModalComponent {
 export class ConfirmationModalComponent {
   constructor(public activeModal: NgbActiveModal){}
   
-  message: string = "Greetings brother.  You have successfully registered for the ID50 reunion."
+  message: string = "Greetings!  Thank you for registered for the ID50 Reunion. You will receive an email confirmation for your payment."
 
   dismiss(){
     this.activeModal.dismiss();

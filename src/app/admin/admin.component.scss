@@ -1,0 +1,15 @@
+div.table{
+    background-color: #fff;
+    padding: 10px;
+    table{
+        tr:hover{
+            background-color: lightblue;
+        }
+    }
+}
+
+.id-chart{
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0px 0px 3px 1px #ccc;
+}

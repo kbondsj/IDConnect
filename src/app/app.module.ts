@@ -14,6 +14,7 @@ import { CommonModule } from '@angular/common';
 //import { StripeModule } from "stripe-angular";
 //import { PaymentCaptureComponent } from './payment-capture/payment-capture.component'
 import { NgxPayPalModule } from 'ngx-paypal';
+import { ChartModule } from 'angular-highcharts';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { NgxPayPalModule } from 'ngx-paypal';
     ReactiveFormsModule,
     CommonModule,
     //StripeModule.forRoot("pk_test_51NNmHkHQAOmDZaHdfpKhCsKg23qLVCAeRJ7WZMmcztzDv4WjgmUEW5o6KFvfcWGZ5aeSMlC4ceMXKhuZOCGCbuDa00i1hEMHVj")
-    NgxPayPalModule
+    NgxPayPalModule,
+    ChartModule
     
   ],
   providers: [],
