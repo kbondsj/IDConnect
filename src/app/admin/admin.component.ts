@@ -23,6 +23,7 @@ export class AdminComponent implements OnInit {
     chart: {
       type: 'column'
     },
+    colors: ['#FFD000'],
     title: {
       text: 'Guest Registrations'
     },
@@ -30,7 +31,7 @@ export class AdminComponent implements OnInit {
       enabled: false
     },
     xAxis: {
-      categories: ['Registration Type', ]
+      categories: ['ID/Guest', 'Spouse', 'Child', 'Other' ]
     },
     series: [      
     ]
@@ -66,12 +67,11 @@ export class AdminComponent implements OnInit {
     
   }
 
-  buildRegistrationsChart = ()=> {
+  buildRegistrationsChart = ()=> {    
     let spouse: any[] = [];
     let child: any[] = [];
     let other: any[] = [];    
-    this.registrations.forEach((reg:any )=> {
-      
+    this.registrations.forEach((reg:any )=> {      
       try{        
         const guests = JSON.parse(reg.guests);
         guests.forEach( (guest:any) => {          
@@ -89,29 +89,29 @@ export class AdminComponent implements OnInit {
     });
     
     this.registrationsChart.addSeries({
-      name: 'Registration',
+      name: 'Registrations',
       data: [
-        this.registrations.length        
+        this.registrations.length, spouse.length, child.length, other.length
       ]
     } as any, true, true);
-    this.registrationsChart.addSeries({
-      name: 'Spouse',
-      data: [
-        spouse.length        
-      ]
-    } as any, true, true);
-    this.registrationsChart.addSeries({
-      name: 'Child',
-      data: [
-        child.length        
-      ]
-    } as any, true, true);
-    this.registrationsChart.addSeries({
-      name: 'Other',
-      data: [
-        other.length        
-      ]
-    } as any, true, true);
+    // this.registrationsChart.addSeries({
+    //   name: 'Spouse',
+    //   data: [
+    //     spouse.length        
+    //   ]
+    // } as any, true, true);
+    // this.registrationsChart.addSeries({
+    //   name: 'Child',
+    //   data: [
+    //     child.length        
+    //   ]
+    // } as any, true, true);
+    // this.registrationsChart.addSeries({
+    //   name: 'Other',
+    //   data: [
+    //     other.length        
+    //   ]
+    // } as any, true, true);
    
   }
 
@@ -145,7 +145,9 @@ export class AdminComponent implements OnInit {
   }
 
   buildGalaMealsChart = ()=>{
-    let meals = { salmon: 0, chicken: 0, vegan: 0 }
+    let meals = { salmon: 0, chicken: 0, vegan: 0 };
+    let guestMeals = { salmon: 0, chicken: 0, vegan: 0 };
+
     this.registrations.forEach( (reg:any) => {
       if(reg.meal === 'salmon'){
         meals.salmon++
@@ -154,32 +156,48 @@ export class AdminComponent implements OnInit {
       }else if(reg.meal === 'vegan'){
         meals.vegan++
       }
+
+      if(reg.guests.length > 2){
+        let guestObj = JSON.parse(reg.guests);
+        guestObj.forEach( (guest:any)=> {
+          if(guest.type === 'spouse'){
+            console.log(guest.meal);
+            if(guest.meal === 'salmon'){
+              guestMeals.salmon++
+            }else if(guest.meal === 'chicken'){
+              guestMeals.chicken++
+            }else if(guest.meal === 'vegan'){
+              guestMeals.vegan++
+            }
+          }
+        })
+      }
     })
     this.mealsChart = new Chart({
       chart: {
         type: 'column'
       },
       title: {
-        text: 'Confirmed Golfers'
+        text: 'Gala Meals'
       },
       credits: {
         enabled: false
       },
       xAxis: {
-        categories: ['Meal Selection']
+        categories: ['Reg Selection', 'Spouse/Other']
       },
       series: [
         {
           name: "Salmon",
-          data: [meals.salmon]
+          data: [meals.salmon, guestMeals.salmon]
         },
         {
           name: "Chicken",
-          data: [meals.chicken]
+          data: [meals.chicken, guestMeals.chicken]
         },
         {
           name: "Vegan",
-          data: [meals.vegan]
+          data: [meals.vegan, guestMeals.vegan]
         }
 
       ]
