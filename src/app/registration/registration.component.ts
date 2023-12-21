@@ -65,7 +65,7 @@ export class RegistrationComponent implements OnInit {
     3 : 495
   }
 
-  readonly DISCOUNT: any = 100;
+  readonly DISCOUNT: any = 170;
 
   readonly PACKAGE_NAMES: string[] = ['Early Bird', 'Regular Registration', 'Late Registration'];
 
